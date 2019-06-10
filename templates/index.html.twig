@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>BTC Rate</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" type="text/css"/>
+</head>
+<body>
+
+{{ form_start(form) }}
+{{ form_widget(form) }}
+{{ form_end(form) }}
+
+<div style="width: 800px; height: 500px">
+    <canvas id="myChart" width="400" height="400"></canvas>
+</div>
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: [
+                {% for rate in btcUsdRates %}
+                '{{ rate.getTime|date('\\d d.m, \\h H:i') }}',
+                {% endfor %}
+            ],
+            datasets: [
+                {
+                    label: 'BTC/USD',
+                    data: [
+                        {% for rate in btcUsdRates %}
+                        {{ rate.getRate }},
+                        {% endfor %}
+                    ],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                },
+                {
+                    label: 'BTC/EUR',
+                    data: [
+                        {% for rate in btcEurRates %}
+                        {{ rate.getRate }},
+                        {% endfor %}
+                    ],
+                    backgroundColor: [
+                        'rgba(153, 102, 255, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                },
+            ]
+        }
+    });
+</script>
+</body>
+</html>
