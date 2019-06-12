@@ -11,12 +11,37 @@ use DateTimeInterface;
 interface RateInterface
 {
     /**
+     * @return int|null
+     */
+    public function getId(): ?int;
+
+    /**
      * @return float
      */
-    public function getRate(): float;
+    public function getHigh(): float;
+
+    /**
+     * @return float
+     */
+    public function getOpen(): float;
+
+    /**
+     * @return float
+     */
+    public function getLow(): float;
+
+    /**
+     * @return float
+     */
+    public function getClose(): float;
+
+    /**
+     * @return int
+     */
+    public function getCurrencyPair(): int;
 
     /**
      * @return DateTimeInterface
      */
-    public function getTime(): DateTimeInterface;
+    public function getDate(): DateTimeInterface;
 }

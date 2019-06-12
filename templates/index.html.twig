@@ -23,7 +23,7 @@
         data: {
             labels: [
                 {% for rate in btcUsdRates %}
-                '{{ rate.getTime|date('\\d d.m, \\h H:i') }}',
+                '{{ rate.getDate|date('\\d d.m, \\h H:i') }}',
                 {% endfor %}
             ],
             datasets: [
@@ -31,7 +31,7 @@
                     label: 'BTC/USD',
                     data: [
                         {% for rate in btcUsdRates %}
-                        {{ rate.getRate }},
+                        {{ rate.getOpen }},
                         {% endfor %}
                     ],
                     backgroundColor: [
@@ -46,7 +46,7 @@
                     label: 'BTC/EUR',
                     data: [
                         {% for rate in btcEurRates %}
-                        {{ rate.getRate }},
+                        {{ rate.getOpen }},
                         {% endfor %}
                     ],
                     backgroundColor: [

@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Routing\Annotation\Route;
+use Throwable;
 
 /**
  * Class DefaultController
@@ -38,15 +39,15 @@ class DefaultController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            try {
+//            try {
                 $btcUsdRates =
                     $rateProvider->getRates($dateRange->getDateFrom(), $dateRange->getDateBy(), CurrencyPair::BTC_USD);
 
                 $btcEurRates =
-                    $rateProvider->getRates($dateRange->getDateFrom(), $dateRange->getDateBy(), CurrencyPair::BTC_USD);
-            } catch (Exception $e) {
-                throw new BadRequestHttpException('Wrong date');
-            }
+                    $rateProvider->getRates($dateRange->getDateFrom(), $dateRange->getDateBy(), CurrencyPair::BTC_EUR);
+//            } catch (Throwable $e) {
+//                throw new BadRequestHttpException('Wrong date');
+//            }
         }
 
         return $this->render('index.html.twig', [
