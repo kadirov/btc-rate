@@ -28,7 +28,6 @@ services:
     # please note that last definitions always *replace* previous ones
 
     App\Component\Rate\Provider\Interfaces\RateProviderInterface:
-        #class: App\Component\Rate\Provider\Btc\Fake\FakeBtcRateProvider
         class: App\Component\Rate\Provider\Btc\Kraken\KrakenBtcRateProvider
 
 
