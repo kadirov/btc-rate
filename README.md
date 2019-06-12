@@ -8,11 +8,22 @@ This is just sample of code on the symfony framework.
 
 Demo: http://rate.kadirov.org
 
+## Configuration
+
+### Database
+
+Copy .env to .env.local and modify database access
+
+~~~
+DATABASE_URL=mysql://db_user:db_password@127.0.0.1:3306/database_name
+~~~
+
 ## Installation
 
 ### Install via Composer
 ~~~
 composer install
+bin/console doctrine:migration:migrate
 ~~~
 
 ### Run server
